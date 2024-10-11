@@ -1,0 +1,6 @@
+.venv
+*.mp3
+playground.py
+/old
+.env
+__pycache__/
