@@ -4,3 +4,4 @@ playground.py
 /old
 .env
 __pycache__/
+settings.py
