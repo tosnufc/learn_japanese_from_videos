@@ -94,7 +94,7 @@ def process_all_videos(working_dir, output_dir):
     for file in os.listdir(working_dir):
         if file.endswith('.avi') or file.endswith('.mp4'):
             input_file = os.path.join(working_dir, file)
-            srt_file = os.path.join(working_dir, f'processed_{os.path.splitext(file)[0]}' + '.srt')
+            srt_file = os.path.join(working_dir, f'{os.path.splitext(file)[0]}' + '.srt')
             print(srt_file)
             if os.path.exists(srt_file):
                 print(f"Processing {file}")

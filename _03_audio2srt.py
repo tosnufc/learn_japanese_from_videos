@@ -32,7 +32,7 @@ def transcribe_all_mp3(audio_dir):
             base_name = os.path.splitext(filename)[0]
             
             # Create the output .srt file path
-            output_file_path = os.path.join(audio_dir, f"{base_name}.srt")
+            output_file_path = os.path.join(audio_dir, f"pre-processed_{base_name}.srt")
             
             # Transcribe the file
             transcription = transcribe_file(audio_file_path)

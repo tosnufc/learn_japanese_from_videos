@@ -4,7 +4,7 @@ from _03_audio2srt import transcribe_all_mp3
 from _04_srt_translation_kana import translate_srt_files
 from _05_split_vid_keyframe_srt import process_all_videos
 from _06_srt_splitter import process_all_srt_files
-from _07_sort import file_sorter, move_processed_subtitle, clean_up
+from _07_sort import file_sorter, copy_processed_subtitle, move_advanced_practice, clean_up
 import settings
 
 working_dir = settings.working_dir
@@ -23,6 +23,7 @@ translate_srt_files(working_dir)
 process_all_videos(working_dir=working_dir, output_dir=output_dir)
 process_all_srt_files(working_dir, output_dir)
 file_sorter(working_dir=output_dir)
-move_processed_subtitle(working_dir=working_dir, output_dir=output_dir)
-# clean_up(working_dir=working_dir)
+copy_processed_subtitle(working_dir=working_dir, output_dir=output_dir)
+move_advanced_practice(working_dir=working_dir, output_dir=output_dir)
+clean_up(working_dir=working_dir)
 
