@@ -1,5 +1,6 @@
-working_dir = 'D:\\ja-lessons\\nihongo101'
-file_name = 'nihongo101_conv.mp4'
-result_folder = '\\practice'
+working_dir = '/Videos/example'
+file_name = 'example.avi'
+result_folder = '/practice'
 chunk_lenght = 90 #seconds (#90 seconds works well with OpenAI whisper)
-encoding = 'copy' # cpu, gpu, copy
+encoding = 'cpu' # cpu, gpu, copy
+os = 'linux' # windows, mac, linux

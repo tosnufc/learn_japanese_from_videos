@@ -7,7 +7,6 @@ import settings
 vid_length = 90 #seconds
 working_dir = settings.working_dir
 input_file = f"{working_dir}\\{settings.file_name}"
-print(input_file)
 
 def get_video_info(input_file):
     cmd = [
