@@ -92,7 +92,7 @@ def process_all_videos(working_dir, output_dir):
         os.makedirs(output_dir)
 
     for file in os.listdir(working_dir):
-        if file.endswith('.avi') or file.endswith('.mp4'):
+        if file.endswith('.avi') or file.endswith('.mp4') or file.endswith('.mkv'):
             input_file = os.path.join(working_dir, file)
             srt_file = os.path.join(working_dir, f'{os.path.splitext(file)[0]}' + '.srt')
             print(srt_file)

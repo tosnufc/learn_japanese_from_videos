@@ -16,7 +16,7 @@ def extract_audio_from_folder(input_dir, output_dir):
 
     # Get all files in the input folder
     for filename in os.listdir(input_dir):
-        if pattern.search(filename) and filename.endswith(('.mp4', '.avi', '.mov', '.flv', '.wmv')):  # Check for '_xx.' pattern in filename
+        if pattern.search(filename) and filename.endswith(('.mp4', '.avi', '.mov', '.flv', '.wmv', 'mkv')):  # Check for '_xx.' pattern in filename
             video_path = os.path.join(input_dir, filename)
             audio_filename = os.path.splitext(filename)[0] + '.mp3'
             audio_path = os.path.join(output_dir, audio_filename)
