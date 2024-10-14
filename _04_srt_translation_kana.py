@@ -52,7 +52,7 @@ def translate_srt_files(folder_path):
             
             response = process_srt(srt_content)
             
-            output_filename = f'{filename.replace('pre-processed_', '')}'
+            output_filename = f"{filename.replace('pre-processed_', '')}"
             output_path = os.path.join(folder_path, output_filename)
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(response)
