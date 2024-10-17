@@ -10,7 +10,7 @@ def file_sorter(working_dir):
     for file in files:
         folder_name = file.split('_')[-2]
         if len(folder_name) == 2:
-            output_dir = os.path.join(working_dir,folder_name)
+            output_dir = working_dir
             # Create the folder if it doesn't exist
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
@@ -27,7 +27,7 @@ def copy_processed_subtitle(working_dir, output_dir):
     for sub_file in processed_sub_files:
         folder_name = sub_file.split('.')[-2].split('_')[-1]
         if len(folder_name) == 2:
-            dest_dir = os.path.join(output_dir,folder_name)
+            dest_dir = output_dir
             # Create the folder if it doesn't exist
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
