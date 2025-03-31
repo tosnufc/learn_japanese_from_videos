@@ -17,9 +17,9 @@ if settings.os == 'linux' or settings.os == 'mac':
 else:
     input_file = f"{working_dir}\\{settings.file_name}" # for Windows OS
 
-# split_video_with_sync(input_file=input_file, chunk_length=chunk_length)
-# extract_audio_from_folder(input_dir=working_dir, output_dir=working_dir)
-# transcribe_all_mp3_gladia(working_dir)
+split_video_with_sync(input_file=input_file, chunk_length=chunk_length)
+extract_audio_from_folder(input_dir=working_dir, output_dir=working_dir)
+transcribe_all_mp3_gladia(working_dir)
 translate_srt_files(working_dir)
 process_all_videos(working_dir=working_dir, output_dir=output_dir)
 process_all_srt_files(working_dir, output_dir)

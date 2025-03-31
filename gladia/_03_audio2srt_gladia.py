@@ -2,38 +2,30 @@ import os
 from dotenv import load_dotenv
 import requests
 import json
+import settings
 from time import sleep
 
 # Load environment variables from .env file
 load_dotenv()
 
-working_dir = 'D:\\videos\\japanese_practice'
-
-
+working_dir = settings.working_dir
 
 def transcribe_all_mp3_gladia(audio_dir):
     # Function to transcribe a single file
     def gladia(audio_file_path):
-        url = "https://api.gladia.io/v2/upload"
-
-
+        upload_url = "https://api.gladia.io/v2/upload"
         # Open the audio file in binary mode
         with open(audio_file_path, 'rb') as audio_file:
             files = {
                 'audio': ('efg.mp3', audio_file, 'audio/mpeg')
             }
-            
             headers = {
                 "x-gladia-key": os.getenv("GLADIA_API_KEY")
             }
-
-            response = requests.post(url, files=files, headers=headers)
-
-        print(response.text)
+            response = requests.post(upload_url, files=files, headers=headers)
+            print(f"uploading {audio_file_path}")
         audio_url = json.loads(response.text)['audio_url']
-
-        url = "https://api.gladia.io/v2/pre-recorded"
-
+        process_url = "https://api.gladia.io/v2/pre-recorded"
         payload = {
             "custom_vocabulary": False,
             "detect_language": False,
@@ -66,26 +58,34 @@ def transcribe_all_mp3_gladia(audio_dir):
             "audio_url": audio_url,
             "language": "ja"
         }
-
         headers = {
             "x-gladia-key": os.getenv("GLADIA_API_KEY"),
             "Content-Type": "application/json"
         }
-        response = requests.post(url, json=payload, headers=headers)
+        response = requests.post(process_url, json=payload, headers=headers)
         response_data = json.loads(response.text)
         job_id = response_data["id"]
         result_url = response_data["result_url"]
-
-        sleep(30)
-
-        url = f"https://api.gladia.io/v2/pre-recorded/{job_id}"
-        print(url)
-
-        response = requests.request("GET", url, headers=headers)
-        # print(response.text)
-
-        srt_subtitles = json.loads(response.text)['result']['transcription']['subtitles'][0]['subtitles']
-        return srt_subtitles
+        sleep(20)
+        job_url = f"https://api.gladia.io/v2/pre-recorded/{job_id}"
+        response = requests.request("GET", job_url, headers=headers)
+        try:
+            print('try')
+            srt_subtitles = json.loads(response.text)['result']['transcription']['subtitles'][0]['subtitles']
+        except(TypeError):
+            print('except')
+            sleep(30)
+            response = requests.request("GET", job_url, headers=headers)
+            srt_subtitles = json.loads(response.text)['result']['transcription']['subtitles'][0]['subtitles']
+            return srt_subtitles
+        else:
+            print('else')
+            return srt_subtitles
+        # finally:
+        #     print('finally')
+        #     response = requests.request("GET", job_url, headers=headers)
+        #     srt_subtitles = json.loads(response.text)['result']['transcription']['subtitles'][0]['subtitles']    
+        #     return srt_subtitles
 
     # Iterate through all files in the folder
     for filename in os.listdir(audio_dir):

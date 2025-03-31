@@ -5,8 +5,8 @@ import settings
 def split_srt(input_file, output_dir):
     with open(input_file, 'r', encoding='utf-8') as f:
         content = f.read()
-        pattern = r'(\d+)\n(\d{2}:\d{2}:\d{2},\d{3}) --> (\d{2}:\d{2}:\d{2},\d{3})'
-        replacement = "00:00:00,000 --> 99:00:30,000"
+        pattern = r'(\d+)\n(\d{2}:\d{2}:\d{2}.\d{3}) --> (\d{2}:\d{2}:\d{2}.\d{3})'
+        replacement = "00:00:00.000 --> 99:00:30.000"
         modified_content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
 
     # Split the content into individual subtitle blocks

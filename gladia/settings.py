@@ -10,6 +10,6 @@
 working_dir = 'D:\\videos\\japanese_practice'
 file_name = 'Solo-Leveling-23.mkv'
 result_folder = '/practice'
-chunk_lenght = 90 #seconds (#90 seconds works well with OpenAI whisper)
+chunk_lenght = 180 #seconds
 encoding = 'copy' # cpu, gpu, copy
 os = 'windows' # windows, mac, linux
