@@ -74,7 +74,7 @@ def transcribe_all_mp3_gladia(audio_dir):
             srt_subtitles = json.loads(response.text)['result']['transcription']['subtitles'][0]['subtitles']
         except(TypeError):
             print('except')
-            sleep(30)
+            sleep(40)
             response = requests.request("GET", job_url, headers=headers)
             srt_subtitles = json.loads(response.text)['result']['transcription']['subtitles'][0]['subtitles']
             return srt_subtitles

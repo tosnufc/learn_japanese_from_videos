@@ -1,6 +1,7 @@
 import os
 import shutil
 import re
+import settings
 
 # Get the current directory
 
@@ -59,14 +60,41 @@ def move_advanced_practice(working_dir, output_dir):
         shutil.copy(source, destination)
         print(f"Copied {advanced_practice_file} to {advanced_practice_folder}")
 
-
-
 def clean_up(working_dir):
     files = [f for f in os.listdir(working_dir) if os.path.isfile(os.path.join(working_dir, f))]
     for f in files:
         if len(f.split('.')[-2].split('_')[-1]) == 2:
             print(f"deleting {f}...")
             os.remove(f"{os.path.join(working_dir, f)}")
-
    
-# clean_up('/media/tos/backup/Videos/l2k1')
+def move_to_folder(working_dir):
+    # Base directory path
+
+    video_file = settings.file_name
+    video_file_name = settings.file_name.split('.')[0]
+    new_dir_path = os.path.join(working_dir, video_file_name)
+    
+    # Create new directory if it doesn't exist
+    if not os.path.exists(new_dir_path):
+        os.makedirs(new_dir_path)
+    
+    # List of items to move
+    items_to_move = [
+        'advanced_practice',
+        'practice',
+        video_file,
+    ]
+    
+    # Move each item
+    for item in items_to_move:
+        source_path = os.path.join(working_dir, item)
+        dest_path = os.path.join(new_dir_path, item)
+        
+        try:
+            if os.path.exists(source_path):
+                shutil.move(source_path, dest_path)
+                print(f"Successfully moved {item} to {video_file_name}")
+            else:
+                print(f"Warning: {item} not found")
+        except Exception as e:
+            print(f"Error moving {item}: {str(e)}")

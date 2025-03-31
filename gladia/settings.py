@@ -8,7 +8,7 @@
 
 # Windows
 working_dir = 'D:\\videos\\japanese_practice'
-file_name = 'Solo-Leveling-23.mkv'
+file_name = 'aragaki-yui-asahi-tea.mp4'
 result_folder = '/practice'
 chunk_lenght = 180 #seconds
 encoding = 'copy' # cpu, gpu, copy
